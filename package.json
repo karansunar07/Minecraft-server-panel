@@ -1,0 +1,19 @@
+{
+  "name": "minecraft-hosting-panel",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm:dev --workspace backend\" \"npm:dev --workspace frontend\"",
+    "start": "npm run build && npm run start --workspace backend",
+    "build": "npm run build --workspace backend && npm run build --workspace frontend",
+    "test": "npm run typecheck --workspaces",
+    "deploy": "docker compose up --build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
+}
