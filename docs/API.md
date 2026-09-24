@@ -16,4 +16,6 @@ All frontend actions go through the backend. The backend then calls a `HostingPr
 - `GET /api/versions?software=paper`
 - `GET /api/admin/overview`
 
-The development provider returns mock data by design. Set `PROVIDER=pterodactyl` with `PTERODACTYL_URL` and `PTERODACTYL_API_KEY` to use the Pterodactyl-compatible provider stub.
+The version endpoint resolves current releases from provider APIs instead of relying on a permanent hardcoded Minecraft list. Paper-family projects use PaperMC APIs, Purpur uses the Purpur API, and other server types fall back to Mojang's version manifest. A short-lived fallback list is used only when the upstream provider is unavailable.
+
+The development provider returns mock server resources by design. Set `PROVIDER=pterodactyl` with `PTERODACTYL_URL` and `PTERODACTYL_API_KEY` to use the Pterodactyl-compatible provider stub.

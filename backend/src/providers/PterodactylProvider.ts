@@ -1,4 +1,5 @@
 import type { HostingProvider } from "./HostingProvider.js";
+import { listMinecraftVersions } from "../services/minecraftVersions.js";
 
 export class PterodactylProvider implements HostingProvider {
   constructor(private readonly baseUrl: string, private readonly apiKey: string) {}
@@ -52,6 +53,6 @@ export class PterodactylProvider implements HostingProvider {
   async createBackup(): Promise<never> { throw new Error("Backup creation endpoint must be configured for Pterodactyl."); }
   async listSoftware() { return []; }
   async listMarketplace() { return []; }
-  async listVersions() { return []; }
+  async listVersions(software: string) { return listMinecraftVersions(software); }
   async installSoftware(): Promise<never> { throw new Error("Software installer must be configured for the target egg/provider."); }
 }

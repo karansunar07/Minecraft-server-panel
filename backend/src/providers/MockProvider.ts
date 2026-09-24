@@ -1,5 +1,6 @@
 import type { HostingProvider } from "./HostingProvider.js";
 import type { Backup, ConsoleLine, FileEntry, MarketplaceItem, Server, ServerStats } from "../types.js";
+import { listMinecraftVersions } from "../services/minecraftVersions.js";
 
 const now = () => new Date().toISOString();
 
@@ -104,8 +105,8 @@ export class MockProvider implements HostingProvider {
     return items;
   }
 
-  async listVersions() {
-    return ["1.21.8", "1.21.7", "1.21.6", "1.21.5", "1.21.4", "1.21.1", "1.20.6", "1.20.4", "1.20.2", "1.20.1"];
+  async listVersions(software: string) {
+    return listMinecraftVersions(software);
   }
 
   async installSoftware(_: string, software: string, version: string, build: string) {
